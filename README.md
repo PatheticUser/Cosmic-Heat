@@ -5,25 +5,51 @@ Cosmic Heat is a 2D top-down space shooter written in Python using the Pygame li
 
 ## Table of Contents
 
-1. [Project Structure](#project-structure)
-2. [Setup and Running](#setup-and-running)
-3. [Controls](#controls)
-4. [Game Architecture](#game-architecture)
-5. [Main Menu](#main-menu)
-6. [Game Loop](#game-loop)
-7. [Background System](#background-system)
-8. [Player](#player)
-9. [Player Bullets](#player-bullets)
-10. [Enemies](#enemies)
-11. [Bosses](#bosses)
-12. [Environmental Hazards](#environmental-hazards)
-13. [Power-Ups and Collectibles](#power-ups-and-collectibles)
-14. [Explosion System](#explosion-system)
-15. [Scoring System](#scoring-system)
-16. [HUD](#hud)
-17. [Audio](#audio)
-18. [Game Over and Reset](#game-over-and-reset)
-19. [Sprite Groups](#sprite-groups)
+- [Cosmic Heat - Documentation](#cosmic-heat---documentation)
+  - [Table of Contents](#table-of-contents)
+  - [Project Structure](#project-structure)
+  - [Setup and Running](#setup-and-running)
+    - [Controls](#controls)
+  - [Game Architecture](#game-architecture)
+    - [Module Dependencies](#module-dependencies)
+  - [Main Menu](#main-menu)
+  - [Game Loop](#game-loop)
+  - [Background System](#background-system)
+  - [Player](#player)
+  - [Player Bullets](#player-bullets)
+  - [Enemies](#enemies)
+    - [Enemy1](#enemy1)
+    - [Enemy2](#enemy2)
+  - [Bosses](#bosses)
+    - [Boss1](#boss1)
+    - [Boss2](#boss2)
+    - [Boss3](#boss3)
+    - [Boss Drop Table](#boss-drop-table)
+  - [Environmental Hazards](#environmental-hazards)
+    - [Meteors (diagonal)](#meteors-diagonal)
+    - [Meteors2 (vertical)](#meteors2-vertical)
+    - [Black Holes](#black-holes)
+  - [Power-Ups and Collectibles](#power-ups-and-collectibles)
+    - [Bullet Refill](#bullet-refill)
+    - [Health Refill](#health-refill)
+    - [Double Refill](#double-refill)
+    - [Extra Score (Score Coin)](#extra-score-score-coin)
+  - [Explosion System](#explosion-system)
+    - [Explosion (standard)](#explosion-standard)
+    - [Explosion2 (large)](#explosion2-large)
+  - [Scoring System](#scoring-system)
+  - [HUD](#hud)
+    - [Health Bar (top-left, y=10)](#health-bar-top-left-y10)
+    - [Bullet Counter (below health bar, y = health bar height + 20)](#bullet-counter-below-health-bar-y--health-bar-height--20)
+    - [Score (top-right)](#score-top-right)
+    - [Hi-Score (top-center)](#hi-score-top-center)
+    - [Boss Health Bars](#boss-health-bars)
+  - [Audio](#audio)
+    - [Mixer Configuration](#mixer-configuration)
+    - [Music Tracks](#music-tracks)
+    - [Sound Effects](#sound-effects)
+  - [Game Over and Reset](#game-over-and-reset)
+  - [Sprite Groups](#sprite-groups)
 
 ## Project Structure
 
@@ -33,7 +59,7 @@ Cosmic Heat/
     menu.py              -- Main menu screen with Play / Exit buttons (~137 lines)
     controls.py          -- Player movement functions for keyboard and joystick (~47 lines)
     functions.py         -- Utility functions: background music, game over, game win (~39 lines)
-    requirements.txt     -- Dependencies (pygame only)
+    pyproject.toml       -- Dependencies (pygame only)
     classes/
         constants.py     -- Global constants: screen size, FPS, colors, tuning values
         player.py        -- Player class with 8-directional movement
@@ -79,16 +105,14 @@ All game logic resides in `main.py` as a single procedural game loop. Entity cla
 
 **Requirements:** Python 3.x, Pygame
 
-```
-git clone https://github.com/Dave-YP/cosmic-heat-pygame.git
-cd cosmic-heat-pygame
-python -m venv env
-source env/Scripts/activate      # On Windows: env\Scripts\activate
-pip install -r requirements.txt
-python main.py
+```bash
+git clone https://github.com/PatheticUser/Cosmic-Heat
+cd Cosmic-Heat
+uv sync
+uv run main.py
 ```
 
-The only dependency listed in `requirements.txt` is `pygame`. No specific version is pinned.
+The project uses `uv` for dependency management. The only dependency is `pygame`.
 
 On launch, the main menu is displayed first. After the player selects "Play," the menu module hands control to the main game loop.
 
